@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 import random
 
 
-def freedown(username, passwd):
+def get():
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0'}
     req = requests.session()
 
@@ -54,7 +54,7 @@ def freedown(username, passwd):
         # print chardet.detect(res_1.content)
         so = BeautifulSoup(res_1.text, fromEncoding="gb18030")
         # print so
-        user = '杰赛'
+        user = '杰赛科技'
         #suser = user.decode('utf-8')
 
         nd = '时间'
@@ -159,4 +159,4 @@ def freedown(username, passwd):
 if __name__ == "__main__":
     #    t=random.randint(60,600 )
     #    time.sleep( t )
-    freedown('hmilyfe', '6014256')
+    get()
