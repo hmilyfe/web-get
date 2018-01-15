@@ -16,6 +16,7 @@ def get_result(u='ALL',psnd='ALL',jb='ALL',lb= '电子电气',comp='杰赛'):
 #    print(psnd)
 #    print(jb)
 #    print(lb)
+#    jb = '高级'
     header = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:57.0) Gecko/20100101 Firefox/57.0'}
     req = requests.session()
     req_urls = []
@@ -166,11 +167,17 @@ def get_result(u='ALL',psnd='ALL',jb='ALL',lb= '电子电气',comp='杰赛'):
 
             #直接打开一个文件，如果文件不存在则创建文件
             if  len(users) > 0 and len(times) > 0 and len(titles) > 0 :
+                tgrs = comp_value+'通过人数:'+ str(len(users))
                 filename = comp + ".txt"
-                fp = open(filename, 'a+')
+                fp = open(filename, 'a+',encoding='utf-8')
+                if (req_url.split('2')[0][-2:-1]) == '中':
+                    fp.write('=============================================================================\n')
+                else :
+                    fp.write('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n')
                 fp.write(url+'\n')
                 fp.write(titles[0]+'\n')
-                #fp.write(times[0].encode('utf-8'))
+                fp.write(times[0]+'\n')
+                fp.write(tgrs+'\n')
                 for x in users :
                     fp.write(x+'\n')
                 fp.close()
@@ -178,11 +185,13 @@ def get_result(u='ALL',psnd='ALL',jb='ALL',lb= '电子电气',comp='杰赛'):
                 print(url)
                 print(titles[0])
                 print(times[0])
-                print('人数:', len(users))
+                print(tgrs)
                 for x in users:
                     print(x)
-                print('=============================================================================')
-
+                if (req_url.split('2')[0][-2:-1]) == '中':
+                     print('=============================================================================\n')
+                else :
+                    print('&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&\n')
 
 
 
